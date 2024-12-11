@@ -53,8 +53,9 @@ class User:
         if validate_data:
             self._checks()
         
-        if User.DB.insert(self.__dict__):
-            return "✅ Élément ajouté ✅"
+        if not self.exists():
+            if User.DB.insert(self.__dict__):
+                return "✅ Élément ajouté ✅"
     
     def exists(self) -> bool:
         return bool(self.find_user)
@@ -80,5 +81,5 @@ if __name__ == "__main__":
     #                 fake.phone_number(),
     #                 fake.address())
     #     print(user.save(validate_data=True))
-    laure = User("Laure", "Barbe")
-    print(laure.delete())
+    Alexandria = User("Alexandria", "Boyer")
+    print(Alexandria.save())
